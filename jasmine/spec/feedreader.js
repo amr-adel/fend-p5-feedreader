@@ -33,7 +33,7 @@ $(function() {
          */
         it('each feed has a url, and it\'s not empty', function() {
             expect(allFeeds.some(feed => !feed.hasOwnProperty('url'))).toBe(false);
-            expect(allFeeds.some(feed => feed.url === "")).toBe(false);
+            expect(allFeeds.some(feed => feed.url === '')).toBe(false);
         });
 
         /* TODO: Write a test that loops through each feed
@@ -42,20 +42,26 @@ $(function() {
          */
         it('each feed has a name, and it\'s not empty', function() {
             expect(allFeeds.some(feed => !feed.hasOwnProperty('name'))).toBe(false);
-            expect(allFeeds.some(feed => feed.name === "")).toBe(false);
+            expect(allFeeds.some(feed => feed.name === '')).toBe(false);
         });
     });
 
 
     /* TODO: Write a new test suite named "The menu" */
     describe('The menu', function() {
+        
+        // Return true if the body element has a 'menu-hidden' class
+        const isMenuHidden = function () {
+            return $('body').attr('class').includes('menu-hidden');
+        };
+        
         /* TODO: Write a test that ensures the menu element is
          * hidden by default. You'll have to analyze the HTML and
          * the CSS to determine how we're performing the
          * hiding/showing of the menu element.
          */
         it('menu element is hidden by default', function() {
-            expect($('body').attr('class').includes('menu-hidden')).toBe(true);
+            expect(isMenuHidden()).toBe(true);
         });
 
          /* TODO: Write a test that ensures the menu changes
@@ -63,6 +69,13 @@ $(function() {
           * should have two expectations: does the menu display when
           * clicked and does it hide when clicked again.
           */
+        it('menu element changes visibility when the menu icon is clicked', function() {
+            $('.menu-icon-link').click(); // Simulate a mouse click
+            expect(isMenuHidden()).toBe(false);
+            
+            $('.menu-icon-link').click(); // Simulate another mouse click
+            expect(isMenuHidden()).toBe(true);
+        });
     });
 
     
