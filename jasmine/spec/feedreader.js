@@ -31,7 +31,10 @@ $(function() {
          * in the allFeeds object and ensures it has a URL defined
          * and that the URL is not empty.
          */
-
+        it('each feed has a URL, and it\'s not empty', function() {
+            expect(allFeeds.some(feed => !feed.hasOwnProperty('url'))).toBe(false);
+            expect(allFeeds.some(feed => feed.url === "")).toBe(false);
+        });
 
         /* TODO: Write a test that loops through each feed
          * in the allFeeds object and ensures it has a name defined
