@@ -133,14 +133,3 @@ $(function() {
     
     
 }());
-
-
-//function runTest() {
-//    let test = true;
-//    $('.entry-link').each(function (i, link) {
-//        if (link.getAttribute('href') === null || link.getAttribute('href') === "") {
-//            test = false;
-//        }
-//    });
-//    return test;
-//}

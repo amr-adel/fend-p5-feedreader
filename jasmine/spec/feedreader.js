@@ -49,19 +49,13 @@ $(function() {
 
     /* TODO: Write a new test suite named "The menu" */
     describe('The menu', function() {
-        
-        // Return true if the body element has a 'menu-hidden' class
-        const isMenuHidden = function () {
-            return $('body').attr('class').includes('menu-hidden');
-        };
-        
         /* TODO: Write a test that ensures the menu element is
          * hidden by default. You'll have to analyze the HTML and
          * the CSS to determine how we're performing the
          * hiding/showing of the menu element.
          */
         it('menu element is hidden by default', function() {
-            expect(isMenuHidden()).toBe(true);
+            expect($('body').hasClass('menu-hidden')).toBe(true);
         });
 
          /* TODO: Write a test that ensures the menu changes
@@ -71,10 +65,10 @@ $(function() {
           */
         it('menu element changes visibility when the menu icon is clicked', function() {
             $('.menu-icon-link').click(); // Simulate a mouse click
-            expect(isMenuHidden()).toBe(false);
+            expect($('body').hasClass('menu-hidden')).toBe(false);
             
             $('.menu-icon-link').click(); // Simulate another mouse click
-            expect(isMenuHidden()).toBe(true);
+            expect($('body').hasClass('menu-hidden')).toBe(true);
         });
     });
 
@@ -89,12 +83,12 @@ $(function() {
          */
         beforeEach(function (done) {
             loadFeed(0, function () {
-            done();
+                done();
             });
         });
 
         it('there is at least a single .entry element within the .feed container', function() {
-            expect($('.entry-link').length).toBeGreaterThan(0);
+            expect($('.entry-link').length >= 1).toBe(true);
         });
     });
 
@@ -105,5 +99,25 @@ $(function() {
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
+        let feedId = 0;
+        let content = "";
+        
+        beforeEach(function (done) {
+            loadFeed(feedId, function () {
+                done();
+            });
+        });
+
+        // Loop through 'allFeeds' array and ensure that each feed loads new content
+        allFeeds.forEach(function (feed) {
+            it('when the \'' + feed.name + '\' feed is loaded by the loadFeed() function, the content changes', function() {
+                expect($('.feed')[0].innerText !== content).toBe(true);
+                
+                content = $('.feed')[0].innerText;
+                feedId++;
+            });
+        })
+
     });
+
 }());
