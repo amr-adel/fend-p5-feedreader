@@ -14,23 +14,26 @@ Find starter code and more information [HERE
 5. Ensure that when the `loadFeed` function is called and completes its work, there is at least a single `.entry` element within the `.feed` container.
 6. Ensure that when a new feed is loaded by the `loadFeed` function that the content actually changes.
 
+---
+
 ### Known issue
 'Linear Digressions' feed contains all posts since 2014!! (about 173 entry), which sometimes cause
 ```js
 Error: Timeout - Async callback was not invoked within timeout specified by jasmine.DEFAULT_TIMEOUT_INTERVAL.
 ```
 
+---
+
 ### To see it in action
 #### Clone repository
 via `HTTPS` 
-```js
+```
 https://github.com/amr-adel/fend-p5-feedreader.git
 ```
 Or via `SSH` 
-```js
+```
 git@github.com:amr-adel/fend-p5-feedreader.git
 ```
 
----
 #### Or download repository
 As a ZIP archive [Feed Reader Testing](https://github.com/amr-adel/fend-p5-feedreader/archive/master.zip)
