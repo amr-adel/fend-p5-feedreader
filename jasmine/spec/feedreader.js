@@ -21,20 +21,22 @@ $(function() {
             expect(allFeeds.length).not.toBe(0);
         });
         
-        /* This test makes sure that each feed object in the 'allFeeds' array
-         *  has a 'url' defined and that the 'url' is not empty.
-         */
-        it('each feed has a url, and it\'s not empty', function() {
-            expect(allFeeds.some(feed => !feed.hasOwnProperty('url'))).not.toBe(true);
-            expect(allFeeds.some(feed => feed.url === '')).not.toBe(true);
-        });
+        allFeeds.forEach(function (feed, index) {
+            /* This test makes sure that the feed object in the 'allFeeds' array
+             *  has a 'url' defined and that the 'url' is not empty.
+             */
+            it('feed' + index + ' has a url, and it\'s not empty', function() {
+                expect(feed.hasOwnProperty('url')).toBe(true);
+                expect(feed.url !== '').toBe(true);
+            });
 
-        /* This test makes sure that each feed object in the allFeeds array
-         *  has a 'name' defined and that the 'name' is not empty.
-         */
-        it('each feed has a name, and it\'s not empty', function() {
-            expect(allFeeds.some(feed => !feed.hasOwnProperty('name'))).not.toBe(true);
-            expect(allFeeds.some(feed => feed.name === '')).not.toBe(true);
+            /* This test makes sure that the feed object in the allFeeds array
+             *  has a 'name' defined and that the 'name' is not empty.
+             */
+            it('feed' + index + ' has a name, and it\'s not empty', function() {
+                expect(feed.hasOwnProperty('name')).toBe(true);
+                expect(feed.name !== '').toBe(true);
+            });
         });
     });
 
@@ -72,7 +74,7 @@ $(function() {
         });
 
         it('there is at least a single .entry element within the .feed container', function() {
-            expect($('.entry').length >= 1).toBe(true);
+            expect($('.feed .entry').length >= 1).toBe(true);
         });
     });
 
@@ -84,24 +86,21 @@ $(function() {
         /* This test ensures when a new feed is loaded by the loadFeed function
          * that the content actually changes.
          */
-        let feedId = 0;
-        let content = "";
+        let oldFeed, newFeed;
         
         beforeEach(function (done) {
-            loadFeed(feedId, function () {
-                done();
+            loadFeed(0, function () {
+                oldFeed = $('.feed')[0].innerText;
+                loadFeed(1, function () {
+                    newFeed = $('.feed')[0].innerText;
+                    done();
+                });
             });
         });
 
-        /* Loop through 'allFeeds' array and ensure that each feed loads a new content. */
-        allFeeds.forEach(function (feed) {
-            it('when the \'' + feed.name + '\' feed is loaded by the loadFeed() function, the content changes', function() {
-                expect($('.feed')[0].innerText !== content).toBe(true);
-                
-                content = $('.feed')[0].innerText;
-                feedId++;
-            });
-        })
+        it('when a new feed is loaded by the \'loadFeed()\' function, the content changes', function() {
+            expect(newFeed).not.toBe(oldFeed);
+        });
 
     });
 
