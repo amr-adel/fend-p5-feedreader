@@ -26,16 +26,14 @@ $(function() {
              *  has a 'url' defined and that the 'url' is not empty.
              */
             it('feed' + index + ' has a url, and it\'s not empty', function() {
-                expect(feed.hasOwnProperty('url')).toBe(true);
-                expect(feed.url !== '').toBe(true);
+                expect(feed.url).not.toBeFalsy();
             });
 
             /* This test makes sure that the feed object in the allFeeds array
              *  has a 'name' defined and that the 'name' is not empty.
              */
             it('feed' + index + ' has a name, and it\'s not empty', function() {
-                expect(feed.hasOwnProperty('name')).toBe(true);
-                expect(feed.name !== '').toBe(true);
+                expect(feed.name).not.toBeFalsy();
             });
         });
     });
@@ -53,10 +51,10 @@ $(function() {
          */
         it('menu element changes visibility when the menu icon is clicked', function() {
             $('.menu-icon-link').click(); // Simulate a mouse click
-            expect($('body').hasClass('menu-hidden')).toBe(false);
+            expect($('body').hasClass('menu-hidden')).toBeFalsy();
             
             $('.menu-icon-link').click(); // Simulate another mouse click
-            expect($('body').hasClass('menu-hidden')).toBe(true);
+            expect($('body').hasClass('menu-hidden')).toBeTruthy();
         });
     });
 
@@ -74,7 +72,7 @@ $(function() {
         });
 
         it('there is at least a single .entry element within the .feed container', function() {
-            expect($('.feed .entry').length >= 1).toBe(true);
+            expect($('.feed .entry').length).toBeGreaterThan(0);
         });
     });
 
@@ -90,9 +88,9 @@ $(function() {
         
         beforeEach(function (done) {
             loadFeed(0, function () {
-                oldFeed = $('.feed')[0].innerText;
+                oldFeed = $('.feed').text();
                 loadFeed(1, function () {
-                    newFeed = $('.feed')[0].innerText;
+                    newFeed = $('.feed').text();
                     done();
                 });
             });
