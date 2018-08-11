@@ -1,6 +1,9 @@
 # Feed Reader Testing
 
 This is my entry for project 5 (*Feed Reader Testing*) from Udacity's  [Front-End Nanodegree](https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001) program.
+
+[![Feed Reader Testing](demo.png "Feed Reader Testing")](https://amr-adel.github.io/fend-p5-feedreader/)
+
 Find starter code and more information [HERE
 ](https://github.com/udacity/frontend-nanodegree-feedreader)
 
@@ -16,15 +19,11 @@ Find starter code and more information [HERE
 
 ---
 
-### Known issue
-'Linear Digressions' feed contains all posts since 2014!! (about 173 entry), which sometimes cause
-```js
-Error: Timeout - Async callback was not invoked within timeout specified by jasmine.DEFAULT_TIMEOUT_INTERVAL.
-```
+### To see it in action
+#### Visit live demo
+At [Feed Reader Testing](https://amr-adel.github.io/fend-p5-feedreader/)
 
 ---
-
-### To see it in action
 #### Clone repository
 via `HTTPS` 
 ```
@@ -35,5 +34,6 @@ Or via `SSH`
 git@github.com:amr-adel/fend-p5-feedreader.git
 ```
 
+---
 #### Or download repository
 As a ZIP archive [Feed Reader Testing](https://github.com/amr-adel/fend-p5-feedreader/archive/master.zip)
